@@ -63,7 +63,7 @@ pipeline {
                 }
             steps{    
                 script{
-                    sh 'systemctl start docker'
+                    sh 'sudo systemctl start docker'
                   }
                 }
               }

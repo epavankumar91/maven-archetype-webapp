@@ -1,4 +1,3 @@
-/* groovylint-disable LineLength */
 pipeline {
     agent { label 'Dev' }
     tools {

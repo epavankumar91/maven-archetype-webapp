@@ -59,7 +59,9 @@ pipeline {
            
           stage('docker run on master'){
             steps{    
-                agent 'master'
+                agent {
+                    label "master"
+                }
                 script{
                     sh 'sudo systemctl start docker'
                   }

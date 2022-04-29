@@ -80,6 +80,11 @@ pipeline {
                 }
               }
            }
+           stage('Input') {
+            steps {
+                input('Do you want to proceed?')
+            }
+        }
            stage('deploy to k8s') {
             steps{
                 sshagent(['ssh-key']) {

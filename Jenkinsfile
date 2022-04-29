@@ -84,8 +84,8 @@ pipeline {
             steps{
                 sshagent(['ssh-key']) {
                // some block
-               sh "scp -o StrictHostKeyChecking=no Deployment.yaml Service.yaml ec2-user@3.145.6.144:/home/ec2-user"
-               sh "ssh ec2-user@3.145.6.144 kubectl apply -f ."
+               sh "scp -o StrictHostKeyChecking=no Deployment.yaml Service.yaml ec2-user@172.31.32.71:/home/ec2-user"
+               sh "ssh ec2-user@172.31.32.71 kubectl apply -f ."
                     }
                 }
             }

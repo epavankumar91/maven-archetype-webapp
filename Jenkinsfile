@@ -58,10 +58,10 @@ pipeline {
               }
            
           stage('docker run on master'){
-            steps{    
-                agent {
+               agent {
                     label "master"
                 }
+            steps{    
                 script{
                     sh 'sudo systemctl start docker'
                   }
@@ -70,10 +70,7 @@ pipeline {
            
            stage('docker push'){
             steps{
-                    
                 script{
-                    
-                
                   docker.withRegistry('https://registry.hub.docker.com', 'docker-hub'){
                     def customImage = docker.build("pavankumargajapati/mymavenapp:1.0.0")
                      customImage.push()

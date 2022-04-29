@@ -53,6 +53,7 @@ pipeline {
             steps{    
                 script{
                     sh 'sudo systemctl start docker'
+                     sh 'sudo chmod 666 /var/run/docker.sock'
                   }
                 }
               }
@@ -72,7 +73,7 @@ pipeline {
             steps{
                 script{
                   docker.withRegistry('https://registry.hub.docker.com', 'docker-hub'){
-                    sh 'sudo chmod 666 /var/run/docker.sock'
+                   
                     def customImage = docker.build("pavankumargajapati/mymavenapp:1.0.1")
                      customImage.push()
                   }

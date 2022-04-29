@@ -72,7 +72,7 @@ pipeline {
             steps{
                 script{
                   docker.withRegistry('https://registry.hub.docker.com', 'docker-hub'){
-                    def customImage = docker.build("pavankumargajapati/mymavenapp:1.0.0")
+                    def customImage = docker.build("pavankumargajapati/mymavenapp:1.0.1")
                      customImage.push()
                   }
                 }

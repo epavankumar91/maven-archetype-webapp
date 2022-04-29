@@ -56,7 +56,7 @@ pipeline {
                   }
                 }
               }
-           }
+           
           stage('docker run on master'){
             steps{    
                 agent 'master'
@@ -65,7 +65,7 @@ pipeline {
                   }
                 }
               }
-           }
+           
            stage('docker push'){
             steps{
                     

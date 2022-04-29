@@ -48,6 +48,24 @@ pipeline {
                 }
               
            }*/
+        
+         stage('docker run on slave'){
+            steps{    
+                script{
+                    sh 'sudo systemctl start docker'
+                  }
+                }
+              }
+           }
+          stage('docker run on master'){
+            steps{    
+                agent 'master'
+                script{
+                    sh 'sudo systemctl start docker'
+                  }
+                }
+              }
+           }
            stage('docker push'){
             steps{
                     

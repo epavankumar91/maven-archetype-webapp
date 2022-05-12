@@ -31,7 +31,7 @@ pipeline {
         stage(" execute Ansible") {
            steps {
                 sh 'cd /home/ec2-user/jenkins/workspace/'
-                sh 'ansible-playbook tomcat.yaml -i dev.env -u ec2-user -vvv'
+                sh 'ansible-playbook tomcat.yaml'
                }
             }    
         

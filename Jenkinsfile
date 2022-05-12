@@ -5,7 +5,6 @@ pipeline {
         maven 'Maven'
         dockerTool 'Docker'
     }
-    
     stages {
         stage('Build Started') {
             steps {

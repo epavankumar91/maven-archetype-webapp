@@ -1,0 +1,43 @@
+pipeline {
+    agent { label 'Dev' }
+    tools {
+        jdk 'Java'
+        maven 'Maven'
+        dockerTool 'Docker'
+    }
+    
+    stages {
+        stage('Build Started') {
+            steps {
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+            }
+        }
+        stage('Cloning our Git') { 
+            steps { 
+                git 'https://github.com/epavankumar91/maven-archetype-webapp.git' 
+            }
+        } 
+        stage('list Git') { 
+            steps { 
+                sh 'ls -lart' 
+                sh 'echo $VER'
+            }
+        }           
+        stage('Maven') {
+            steps {
+                sh 'mvn clean package'
+            }
+        }
+        stage(" execute Ansible") {
+           steps {
+               sshagent(['connectansible']) {
+                
+                sh 'cd /home/ec2-user/jenkins/workspace/jenkins-ansible/'
+                sh ' pwd '
+                sh 'hostname'
+                sh 'ansible-playbook tomcat.yaml -i dev.env -u ec2-user -vvv'
+               }
+            }    
+        }
+    }   
+}

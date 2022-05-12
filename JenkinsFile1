@@ -4,6 +4,7 @@ pipeline {
         jdk 'Java'
         maven 'Maven'
         dockerTool 'Docker'
+        Ansible 'Ansible'
     }
     stages {
         stage('Build Started') {
@@ -29,13 +30,12 @@ pipeline {
         }
         stage(" execute Ansible") {
            steps {
-               sshagent(['connectansible']) {
                 sh 'cd /home/ec2-user/jenkins/workspace/jenkins-ansible/'
                 sh ' pwd '
                 sh 'hostname'
                 sh 'ansible-playbook tomcat.yaml -i dev.env -u ec2-user -vvv'
                }
             }    
-        }
+        
     }   
 }
